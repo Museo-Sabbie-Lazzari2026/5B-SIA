@@ -1,0 +1,12 @@
+{
+  "name": "Sand Scape Explorer",
+  "short_name": "SandScape",
+  "description": "Explore stunning sand landscapes and desert vistas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdf6e3",
+  "theme_color": "#c8870a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
