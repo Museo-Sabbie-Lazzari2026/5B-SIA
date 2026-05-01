@@ -1,26 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Museo delle Sabbie" },
+      { name: "description", content: "Sand Studio — Museo delle Sabbie" },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
+  useEffect(() => {
+    window.location.replace("/museo/index.html");
+  }, []);
+
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#FAF6F1",
+        fontFamily: "Inter, sans-serif",
+        color: "#5a4a32",
+      }}
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+      <p>Reindirizzamento al Museo delle Sabbie…</p>
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }

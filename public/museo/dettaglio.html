@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dettaglio Campione — Museo delle Sabbie</title>
+  <meta name="description" content="Scheda dettagliata del campione di sabbia con immagini, analisi al microscopio e dati geografici.">
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+  <script>
+    (function(){
+      try {
+        var m = localStorage.getItem('museo-theme-mode') || 'auto';
+        if (!['auto','light','dark'].includes(m)) m = 'auto';
+        var html = document.documentElement;
+        html.setAttribute('data-theme-mode', m);
+        var resolved = m === 'auto'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : m;
+        html.setAttribute('data-theme', resolved);
+      } catch(e){}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo-icon">
+        <img src="../images/logo-scuola.png" alt="Logo ITCS Maria Lazzari" class="header-logo-img">
+      </a>
+      <a href="index.html" class="header-logo-center">
+        <span class="header-logo-text">Museo delle Sabbie</span>
+      </a>
+      <nav class="header-nav" aria-label="Navigazione principale">
+        <a href="index.html#collezione">Collezione</a>
+        <a href="index.html#info">Info</a>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia tema" title="Cambia tema">
+          <span class="theme-toggle-icon" data-theme-icon="auto" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 9 4.7 1.7 1.7 0 0 0 10 3.2V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          </span>
+          <span class="theme-toggle-icon" data-theme-icon="light" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </span>
+          <span class="theme-toggle-icon" data-theme-icon="dark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </span>
+        </button>
+      </nav>
+      <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false" id="menu-toggle">
+        <svg viewBox="0 0 24 24" id="menu-icon">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Detail Content -->
+  <main class="detail-page" id="detail-page">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <p>Caricamento del campione...</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">Museo Digitale delle Sabbie del Mondo</p>
+      <p class="footer-school">ITCS "Maria Lazzari" — Progetto didattico</p>
+      <p class="footer-copy">&copy; 2026 ITCS "Maria Lazzari"</p>
+    </div>
+  </footer>
+
+  <script src="../dettaglio.js"></script>
+</body>
+</html>
