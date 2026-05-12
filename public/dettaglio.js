@@ -416,7 +416,9 @@ function initMobileMenuDetail() {
 
     detailPage.innerHTML =
       '<div class="detail-back"><a href="index.html" class="btn btn-back">← Torna alla collezione</a></div>' +
-      '<div class="detail-header"><h1>' + c.nome + '</h1><p class="detail-header-location">📍 ' + c.provenienza + ' — ' + c.paese + ', ' + c.continente + '</p></div>' +
+      '<div class="detail-header" style="position:relative;"><h1>' + c.nome + '</h1><p class="detail-header-location">📍 ' + c.provenienza + ' — ' + c.paese + ', ' + c.continente + '</p>' +
+        (c.id === 667 ? '<a href="easter-egg.html" class="easter-egg-btn" title="Hai trovato qualcosa di speciale..." aria-label="Easter egg" style="position:absolute;top:0;right:0;display:inline-flex;align-items:center;justify-content:center;width:52px;height:64px;background:linear-gradient(145deg,#fff8e7,#f0d9a8);border-radius:50%/60% 60% 55% 55%;box-shadow:0 4px 14px rgba(139,97,54,0.35),inset 0 -4px 8px rgba(139,97,54,0.15);text-decoration:none;font-size:1.8rem;transition:transform 0.25s ease,box-shadow 0.25s ease;animation:eggFloat 3s ease-in-out infinite;" onmouseover="this.style.transform=\'scale(1.15) rotate(-8deg)\';this.style.boxShadow=\'0 8px 22px rgba(139,97,54,0.5),inset 0 -4px 8px rgba(139,97,54,0.15)\';" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 14px rgba(139,97,54,0.35),inset 0 -4px 8px rgba(139,97,54,0.15)\';">🥚</a><style>@keyframes eggFloat{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-4px) rotate(3deg);}}</style>' : '') +
+      '</div>' +
       '<div class="detail-content">' +
         '<div class="detail-images">' +
           imagesHtml +

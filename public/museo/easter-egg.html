@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Easter Egg — Museo delle Sabbie</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: linear-gradient(135deg, #f4ecd8 0%, #e8dcc0 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #2A2520;
+  }
+  .container {
+    max-width: 640px;
+    width: 100%;
+    background: #fffdf7;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  .egg {
+    font-size: 4rem;
+    display: inline-block;
+    animation: wobble 3s ease-in-out infinite;
+  }
+  @keyframes wobble {
+    0%,100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  h1 {
+    font-size: 1.8rem;
+    margin: 1rem 0 0.5rem;
+    color: #4A331C;
+  }
+  p.subtitle {
+    color: #7E7469;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .question {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem;
+    font-weight: 600;
+    color: #2A2520;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.1rem;
+    border: 2px solid #C8A870;
+    border-radius: 10px;
+    background: #fff;
+    font-family: inherit;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus { border-color: #8B6136; }
+  button {
+    background: #8B6136;
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, transform 0.1s;
+  }
+  button:hover { background: #4A331C; }
+  button:active { transform: scale(0.97); }
+  .feedback {
+    margin-top: 1.2rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    display: none;
+  }
+  .feedback.error {
+    background: #f8d7da;
+    color: #721c24;
+    display: block;
+  }
+  .video-wrap { display: none; margin-top: 1.5rem; }
+  .video-wrap video {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .back {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #8B6136;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .back:hover { text-decoration: underline; }
+  .success-title {
+    color: #2E8B57;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="egg">🥚</div>
+    <h1>Hai trovato un Easter Egg!</h1>
+    <p class="subtitle">Rispondi correttamente per sbloccare il contenuto segreto</p>
+
+    <div id="quiz">
+      <div class="question">Chi è la bidella migliore del Lazzari?</div>
+      <input type="text" id="answer" placeholder="Scrivi qui la risposta..." maxlength="50" autocomplete="off">
+      <br>
+      <button id="submit">Sblocca</button>
+      <div class="feedback error" id="feedback">Risposta sbagliata, riprova!</div>
+    </div>
+
+    <div class="video-wrap" id="videoWrap">
+      <h2 class="success-title">🎉 Risposta esatta!</h2>
+      <video id="video" controls playsinline>
+        <source src="videos/easter-egg.mp4" type="video/mp4">
+        Il tuo browser non supporta il video.
+      </video>
+    </div>
+
+    <a href="dettaglio.html?id=667" class="back">← Torna al campione</a>
+  </div>
+
+<script>
+  (function() {
+    var input = document.getElementById('answer');
+    var btn = document.getElementById('submit');
+    var feedback = document.getElementById('feedback');
+    var quiz = document.getElementById('quiz');
+    var videoWrap = document.getElementById('videoWrap');
+    var video = document.getElementById('video');
+
+    function check() {
+      var val = (input.value || '').trim().toLowerCase();
+      if (val === 'maria') {
+        quiz.style.display = 'none';
+        videoWrap.style.display = 'block';
+        try { video.play(); } catch (e) {}
+      } else {
+        feedback.style.display = 'block';
+        input.focus();
+        input.select();
+      }
+    }
+
+    btn.addEventListener('click', check);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') check();
+      else feedback.style.display = 'none';
+    });
+    input.focus();
+  })();
+</script>
+</body>
+</html>
