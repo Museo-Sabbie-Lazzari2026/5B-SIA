@@ -761,8 +761,19 @@ function initMobileMenu() {
 
   /* --- Event Listeners --- */
   searchInput.addEventListener('input', applyFilters);
-  var sortOrderEl = document.getElementById('sort-order');
-  if (sortOrderEl) sortOrderEl.addEventListener('change', applyFilters);
+  var sortOrderBtn = document.getElementById('sort-order-btn');
+  if (sortOrderBtn) {
+    sortOrderBtn.addEventListener('click', function() {
+      var next = sortOrderBtn.dataset.order === 'asc' ? 'desc' : 'asc';
+      sortOrderBtn.dataset.order = next;
+      var label = next === 'asc' ? 'Crescente' : 'Decrescente';
+      sortOrderBtn.setAttribute('aria-label', 'Ordina per numero campione: ' + label.toLowerCase());
+      sortOrderBtn.title = 'Ordina: ' + label.toLowerCase();
+      var t = sortOrderBtn.querySelector('.sort-order-text');
+      if (t) t.textContent = label;
+      applyFilters();
+    });
+  }
   bindPress(btnReset, resetFilters);
 
   /* --- Init --- */
