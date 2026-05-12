@@ -752,6 +752,8 @@ function initMobileMenu() {
 
   /* --- Event Listeners --- */
   searchInput.addEventListener('input', applyFilters);
+  var sortOrderEl = document.getElementById('sort-order');
+  if (sortOrderEl) sortOrderEl.addEventListener('change', applyFilters);
   bindPress(btnReset, resetFilters);
 
   /* --- Init --- */
