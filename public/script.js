@@ -604,8 +604,8 @@ function initMobileMenu() {
   }
 
   function applySortOrder() {
-    var sortEl = document.getElementById('sort-order');
-    var dir = sortEl ? sortEl.value : 'asc';
+    var sortBtn = document.getElementById('sort-order-btn');
+    var dir = sortBtn ? (sortBtn.dataset.order || 'asc') : 'asc';
     filteredCampioni.sort(function(a, b) {
       var na = parseInt(a.id, 10); var nb = parseInt(b.id, 10);
       if (isNaN(na) || isNaN(nb)) {
