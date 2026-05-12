@@ -1810,7 +1810,19 @@ h1 em, h2 em, h3 em {
   }
 
   .metadata-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .metadata-item,
+  .metadata-item--colored {
+    padding: 0.7rem 0.8rem;
+    border-radius: 12px;
+  }
+  .metadata-label {
+    font-size: 0.62rem;
+  }
+  .metadata-value {
+    font-size: 0.85rem;
   }
 
   .related-grid {
