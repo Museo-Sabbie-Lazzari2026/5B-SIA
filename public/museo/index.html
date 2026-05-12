@@ -1917,18 +1917,18 @@ h1 em, h2 em, h3 em {
     margin-top: 4px;
   }
 
-  /* 4. GALLERY GRID — 1 column on mobile */
+  /* 4. GALLERY GRID — 4 columns on mobile (compact) */
   .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    padding: 0 12px;
   }
   .card {
-    border-radius: 18px;
+    border-radius: 10px;
   }
   .card-image-wrapper {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     border-radius: 0;
   }
   .card-image {
@@ -1937,34 +1937,36 @@ h1 em, h2 em, h3 em {
     object-fit: cover;
   }
   .card-body {
-    padding: 20px;
+    padding: 6px 4px;
   }
   .card-title {
-    font-size: 22px;
-    margin: 0 0 6px;
+    font-size: 11px;
+    line-height: 1.2;
+    margin: 0 0 2px;
     padding: 0;
   }
   .card-location {
-    font-size: 13.5px;
-    margin: 0 0 16px;
+    font-size: 9px;
+    line-height: 1.2;
+    margin: 0 0 4px;
     padding: 0;
   }
   .card-meta {
-    gap: 6px;
-    padding: 0;
+    display: none;
   }
   .card-tag {
-    height: 26px;
-    font-size: 12px;
-    padding: 0 10px;
+    height: 16px;
+    font-size: 8.5px;
+    padding: 0 5px;
     margin: 0;
   }
   .card-badge {
-    top: 10px;
-    right: 10px;
-    height: 24px;
-    font-size: 11.5px;
-    padding: 0 9px;
+    top: 4px;
+    right: 4px;
+    height: 16px;
+    font-size: 8.5px;
+    padding: 0 5px;
+    border-radius: 6px;
   }
 
   /* List cards stack on mobile */
@@ -1974,6 +1976,23 @@ h1 em, h2 em, h3 em {
   .card-list-image {
     width: 100%;
     height: 180px;
+  }
+  /* In list view restore single column for readability */
+  .gallery-grid.gallery-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .gallery-grid.gallery-list .card-body {
+    padding: 16px;
+  }
+  .gallery-grid.gallery-list .card-title {
+    font-size: 18px;
+  }
+  .gallery-grid.gallery-list .card-location {
+    font-size: 13px;
+  }
+  .gallery-grid.gallery-list .card-meta {
+    display: flex;
   }
 
   /* 5. MAP */
