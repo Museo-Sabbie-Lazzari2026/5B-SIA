@@ -817,7 +817,33 @@ h1 em, h2 em, h3 em {
   align-items: flex-end;
 }
 
-/* View toggle */
+/* Sort order toggle button (under search input) */
+.sort-order-btn {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border: 1.5px solid #e0d5c5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  width: fit-content;
+}
+.sort-order-btn:hover {
+  color: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+}
+.sort-order-btn .sort-order-icon {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.sort-order-btn[data-order="desc"] .sort-order-icon {
+  transform: rotate(180deg);
+}
 .view-toggle {
   display: flex;
   gap: 2px;
