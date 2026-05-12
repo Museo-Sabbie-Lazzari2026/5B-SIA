@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Sabbie del Mondo" },
+      { name: "description", content: "Sandscape Explorer is a web application for exploring and filtering sample data." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Sabbie del Mondo" },
+      { property: "og:description", content: "Sandscape Explorer is a web application for exploring and filtering sample data." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Sabbie del Mondo" },
+      { name: "twitter:description", content: "Sandscape Explorer is a web application for exploring and filtering sample data." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/079634ce-30d0-4c26-88db-5b09c922dd02/id-preview-936ce20b--698deb65-c9d1-4a91-be1c-4bae61c416f6.lovable.app-1778609520488.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/079634ce-30d0-4c26-88db-5b09c922dd02/id-preview-936ce20b--698deb65-c9d1-4a91-be1c-4bae61c416f6.lovable.app-1778609520488.png" },
     ],
     links: [
       {
