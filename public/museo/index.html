@@ -2885,7 +2885,7 @@ html.theme-anim .theme-toggle {
       <div class="filters-row">
         <div class="filter-group">
           <label for="search-input">Cerca</label>
-          <input type="text" id="search-input" placeholder="Nome, luogo, paese..." autocomplete="off">
+          <input type="text" id="search-input" placeholder="Nome, luogo, paese, n° campione..." autocomplete="off">
         </div>
         <div class="filter-group">
           <label for="filter-continente">Continente</label>
@@ -2916,6 +2916,13 @@ html.theme-anim .theme-toggle {
             </button>
             <div class="multi-select-panel" id="filter-tipologia-panel" role="listbox" aria-multiselectable="true" hidden></div>
           </div>
+        </div>
+        <div class="filter-group">
+          <label for="sort-order">Ordina</label>
+          <select id="sort-order">
+            <option value="asc">N° campione: crescente</option>
+            <option value="desc">N° campione: decrescente</option>
+          </select>
         </div>
         <div class="filters-actions">
           <button class="btn btn-secondary" id="btn-reset" type="button">✕ Reset</button>

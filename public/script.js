@@ -585,8 +585,9 @@ function initMobileMenu() {
 
     filteredCampioni = campioni.filter(function(c) {
       if (searchTerm) {
-        var searchable = [c.nome, c.provenienza, c.paese, c.continente, c.bacino, c.tipologia]
-          .filter(Boolean).join(' ').toLowerCase();
+        var searchable = [c.nome, c.provenienza, c.paese, c.continente, c.bacino, c.tipologia, c.id, '#' + c.id]
+          .filter(function(v){ return v !== undefined && v !== null && v !== ''; })
+          .join(' ').toLowerCase();
         if (!searchable.includes(searchTerm)) return false;
       }
       if (selectedContinenti.size > 0 && !selectedContinenti.has(c.continente)) return false;
@@ -595,14 +596,32 @@ function initMobileMenu() {
       return true;
     });
 
+    applySortOrder();
+
     visibleCount = PAGE_SIZE;
     renderFilterBadges();
     renderGallery();
   }
 
+  function applySortOrder() {
+    var sortEl = document.getElementById('sort-order');
+    var dir = sortEl ? sortEl.value : 'asc';
+    filteredCampioni.sort(function(a, b) {
+      var na = parseInt(a.id, 10); var nb = parseInt(b.id, 10);
+      if (isNaN(na) || isNaN(nb)) {
+        return dir === 'desc'
+          ? String(b.id).localeCompare(String(a.id), 'it', { numeric: true })
+          : String(a.id).localeCompare(String(b.id), 'it', { numeric: true });
+      }
+      return dir === 'desc' ? nb - na : na - nb;
+    });
+  }
+
   /* --- Reset Filters --- */
   function resetFilters() {
     searchInput.value = '';
+    var sortEl = document.getElementById('sort-order');
+    if (sortEl) sortEl.value = 'asc';
     selectedContinenti.clear();
     selectedPaesi.clear();
     selectedTipologie.clear();
@@ -612,6 +631,7 @@ function initMobileMenu() {
     renderMsOptions(msTipologia, tipologie);
     updatePaesiDropdown();
     filteredCampioni = [...campioni];
+    applySortOrder();
     visibleCount = PAGE_SIZE;
     renderFilterBadges();
     renderGallery();
@@ -735,6 +755,8 @@ function initMobileMenu() {
 
   /* --- Event Listeners --- */
   searchInput.addEventListener('input', applyFilters);
+  var sortOrderEl = document.getElementById('sort-order');
+  if (sortOrderEl) sortOrderEl.addEventListener('change', applyFilters);
   bindPress(btnReset, resetFilters);
 
   /* --- Init --- */
