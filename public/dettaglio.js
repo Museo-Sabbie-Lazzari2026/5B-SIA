@@ -408,6 +408,13 @@ function initMobileMenuDetail() {
         }
       });
     }
+    if (Array.isArray(c.microscopio_extra)) {
+      c.microscopio_extra.forEach(function(src) {
+        if (src && !microscopeImages.some(function(existing) { return existing.src === src; })) {
+          microscopeImages.push({ src: src, label: '🔬 Immagine al microscopio' });
+        }
+      });
+    }
     imagesHtml += microscopeImages.map(function(img) {
       return imageBlock(img.src, img.label + ': ' + c.nome, img.label);
     }).join('');
