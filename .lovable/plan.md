@@ -1,15 +1,14 @@
-## Schede tecniche più compatte (tablet + mobile)
+## Piano confermato
 
-File: `public/museo/index.html` (CSS inline)
+1. Copiare le immagini caricate in `public/images/`:
+   - `microscopio/491.jpg` ← Santo Domingo
+   - `microscopio/87.jpg` e `microscopio/88.jpg` ← Casalabate (stessa foto)
+   - `microscopio/556.jpg` ← Golfo di Procchio
+   - `campioni/110.jpg` ← Budelli_1 (vista d'insieme)
+   - `microscopio/110.jpg`, `microscopio/110-2.jpg`, `microscopio/110-3.jpg` ← Budelli 2/3/4
 
-1. **Tablet (≤768px)** — riga 1812-1814: rimuovere l'override che imposta `.metadata-grid` a `1fr`. Mantenere 2 colonne (`1fr 1fr`) come desktop, ma con `gap` più stretto (`0.5rem`).
+2. Aggiornare `public/dati.json` per i 5 campioni (491, 87, 88, 556, 110) sostituendo `images/coming-soon.jpg` con i nuovi path. Per il 110 aggiungere il campo `microscopio_extra: ["images/microscopio/110-2.jpg", "images/microscopio/110-3.jpg"]`.
 
-2. **Mobile (≤640px)**: aggiungere blocco dedicato per `.metadata-grid` e `.metadata-item`:
-   - `grid-template-columns: 1fr 1fr` (2 colonne → 4 a sinistra, 4 a destra)
-   - `gap: 6px`
-   - `.metadata-item` / `.metadata-item--colored`: padding ridotto (`0.55rem 0.65rem`), border-radius più piccolo
-   - `.metadata-label`: font-size `0.58rem`
-   - `.metadata-value`: font-size `0.78rem`, line-height compatta
-   - Eventuali immagini di sfondo (`metadata-item__bg`) restano ma con item più basso.
+3. Aggiornare `public/dettaglio.js` per renderizzare, se presente, `microscopio_extra` come piccola galleria di thumbnail sotto la foto al microscopio principale (click → ingrandimento/scambio con la principale).
 
-3. Nessuna modifica a struttura HTML né JS.
+Clicca "Implementa il piano" per procedere.
