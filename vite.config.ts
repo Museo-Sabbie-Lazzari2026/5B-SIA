@@ -9,6 +9,6 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   vite: {
     publicDir: "public",
-        base: "/dream-scape-explorer/",
+    base: process.env.DEPLOY_TARGET === "github" ? "/dream-scape-explorer/" : "/",
   },
 });
