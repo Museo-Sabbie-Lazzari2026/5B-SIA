@@ -466,6 +466,7 @@ function initMobileMenuDetail() {
       '</div></section>' : '');
 
     generateQR(c.id);
+    if (hasMicroscope) generateQR(c.id, 'qr-microscope', 140);
 
     // Attach hover/focus listeners
     document.querySelectorAll('.sand-type-item').forEach(function(el) {
