@@ -418,6 +418,10 @@ function initMobileMenuDetail() {
     imagesHtml += microscopeImages.map(function(img) {
       return imageBlock(img.src, img.label + ': ' + c.nome, img.label);
     }).join('');
+    var hasMicroscope = microscopeImages.length > 0;
+    if (hasMicroscope) {
+      imagesHtml += '<div class="image-qr"><div class="image-qr-container" id="qr-microscope"></div><p class="qr-note">Scansiona per aprire la scheda</p></div>';
+    }
 
     var tipologiaHtml = metaItem('Tipologia', c.tipologia, tipoPal, 'tipologia');
 
