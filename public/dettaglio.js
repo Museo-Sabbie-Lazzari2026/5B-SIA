@@ -418,6 +418,10 @@ function initMobileMenuDetail() {
     imagesHtml += microscopeImages.map(function(img) {
       return imageBlock(img.src, img.label + ': ' + c.nome, img.label);
     }).join('');
+    var hasMicroscope = microscopeImages.length > 0;
+    if (hasMicroscope) {
+      imagesHtml += '<div class="image-qr"><div class="image-qr-container" id="qr-microscope"></div><p class="qr-note">Scansiona per aprire la scheda</p></div>';
+    }
 
     var tipologiaHtml = metaItem('Tipologia', c.tipologia, tipoPal, 'tipologia');
 
@@ -462,6 +466,7 @@ function initMobileMenuDetail() {
       '</div></section>' : '');
 
     generateQR(c.id);
+    if (hasMicroscope) generateQR(c.id, 'qr-microscope', 140);
 
     // Attach hover/focus listeners
     document.querySelectorAll('.sand-type-item').forEach(function(el) {
@@ -484,23 +489,25 @@ function initMobileMenuDetail() {
     });
   }
 
-  function generateQR(id) {
-    var qrContainer = document.getElementById('qr-code');
+  function generateQR(id, containerId, size) {
+    var elId = containerId || 'qr-code';
+    var qrSize = size || 180;
+    var qrContainer = document.getElementById(elId);
     if (!qrContainer) return;
     var pageUrl = window.location.href;
 
     if (typeof QRCode !== 'undefined') {
       new QRCode(qrContainer, {
-        text: pageUrl, width: 180, height: 180,
+        text: pageUrl, width: qrSize, height: qrSize,
         colorDark: '#2A2520', colorLight: '#FFFFFF',
         correctLevel: QRCode.CorrectLevel.M
       });
     } else {
       var img = document.createElement('img');
-      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(pageUrl);
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + qrSize + 'x' + qrSize + '&data=' + encodeURIComponent(pageUrl);
       img.alt = 'QR Code per questo campione';
-      img.width = 180;
-      img.height = 180;
+      img.width = qrSize;
+      img.height = qrSize;
       qrContainer.appendChild(img);
     }
   }
