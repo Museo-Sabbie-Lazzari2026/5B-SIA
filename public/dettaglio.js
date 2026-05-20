@@ -492,20 +492,25 @@ function initMobileMenuDetail() {
   function generateQR(id) {
     var qrContainer = document.getElementById('qr-code');
     if (!qrContainer) return;
+  function generateQR(id, containerId, size) {
+    var elId = containerId || 'qr-code';
+    var qrSize = size || 180;
+    var qrContainer = document.getElementById(elId);
+    if (!qrContainer) return;
     var pageUrl = window.location.href;
 
     if (typeof QRCode !== 'undefined') {
       new QRCode(qrContainer, {
-        text: pageUrl, width: 180, height: 180,
+        text: pageUrl, width: qrSize, height: qrSize,
         colorDark: '#2A2520', colorLight: '#FFFFFF',
         correctLevel: QRCode.CorrectLevel.M
       });
     } else {
       var img = document.createElement('img');
-      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(pageUrl);
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + qrSize + 'x' + qrSize + '&data=' + encodeURIComponent(pageUrl);
       img.alt = 'QR Code per questo campione';
-      img.width = 180;
-      img.height = 180;
+      img.width = qrSize;
+      img.height = qrSize;
       qrContainer.appendChild(img);
     }
   }
