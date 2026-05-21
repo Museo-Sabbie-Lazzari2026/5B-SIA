@@ -2786,6 +2786,34 @@ html[data-theme="dark"] .multi-select-panel {
   color: var(--color-text);
   border-color: var(--color-border);
 }
+
+html[data-theme="dark"] .curiosita-inner {
+  background: linear-gradient(135deg, #2F2419 0%, #1F150E 100%);
+  border-color: rgba(255, 178, 74, 0.34);
+  color: #F7E8D0;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.56),
+    0 0 48px rgba(255, 178, 74, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .curiosita-inner::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='20' cy='30' r='1' fill='%23FFB24A' opacity='0.18'/%3E%3Ccircle cx='60' cy='15' r='1.4' fill='%23FFB24A' opacity='0.12'/%3E%3Ccircle cx='95' cy='55' r='1' fill='%23FFB24A' opacity='0.18'/%3E%3Ccircle cx='35' cy='80' r='1.4' fill='%23FFB24A' opacity='0.12'/%3E%3Ccircle cx='80' cy='100' r='1' fill='%23FFB24A' opacity='0.18'/%3E%3C/svg%3E");
+  opacity: 0.65;
+}
+
+html[data-theme="dark"] .curiosita-icon,
+html[data-theme="dark"] .curiosita-label {
+  color: #FFB24A;
+}
+
+html[data-theme="dark"] .curiosita-inner h3 {
+  color: #FFF2DC;
+}
+
+html[data-theme="dark"] .curiosita-text {
+  color: #EAD8BF;
+}
 /* Smooth color transitions when switching theme */
 html.theme-anim,
 html.theme-anim body,
