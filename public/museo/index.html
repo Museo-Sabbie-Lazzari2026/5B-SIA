@@ -1753,6 +1753,37 @@ h1 em, h2 em, h3 em {
   padding-top: 1.5rem;
 }
 
+.footer-credit-marquee {
+  position: relative;
+  width: min(760px, 100%);
+  height: 2rem;
+  margin: 1.25rem auto 0;
+  overflow: hidden;
+}
+
+.footer-credit-marquee span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.9);
+  animation: footer-credit-slide 8s linear infinite;
+}
+
+@keyframes footer-credit-slide {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(760px);
+  }
+}
+
 /* ============================================
    LOADING
    ============================================ */
@@ -3006,10 +3037,9 @@ html.theme-anim .theme-toggle {
         <a href="#info">Informazioni</a>
       </div>
       <p class="footer-copy">&copy; 2026 ITCS "Maria Lazzari".</p>
-      <p class="footer-credits" style="margin-top:1.25rem;font-size:.95rem;letter-spacing:.04em;color:inherit;opacity:.85;">
-        <strong style="font-weight:600;">Crediti:</strong>
-        Erjon &middot; Semir &middot; Emily &middot; Martina &middot; Anita
-      </p>
+      <div class="footer-credit-marquee" aria-label="BY ERJON GABRIELE BASHA">
+        <span>BY ERJON GABRIELE BASHA</span>
+      </div>
     </div>
   </footer>
 
