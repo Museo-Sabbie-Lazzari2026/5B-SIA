@@ -1558,6 +1558,28 @@ h1 em, h2 em, h3 em {
     );
 }
 
+/* Variante Continente: usa le immagini dedicate al posto del colore pieno */
+.metadata-item--continente .metadata-item__bg {
+  filter: saturate(1.05) brightness(0.78) contrast(1.08);
+  opacity: 0.95;
+}
+
+.metadata-item--continente .metadata-item__overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 31, 49, 0.82) 0%,
+      rgba(17, 31, 49, 0.46) 52%,
+      rgba(17, 31, 49, 0.18) 100%
+    );
+}
+
+.metadata-item--continente.metadata-item--has-bg .metadata-label,
+.metadata-item--continente.metadata-item--has-bg .metadata-value {
+  color: #fff8ec !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.48);
+}
+
 /* Quando c'è un'immagine di sfondo, rinforza leggermente il bordo */
 .metadata-item--has-bg {
   box-shadow:

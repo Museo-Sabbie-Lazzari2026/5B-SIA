@@ -48,12 +48,24 @@ const TIPOLOGIA_PALETTE = {
 const CONTINENTE_PALETTE = {
   "nord america":     { bg: "#EAD7CE", border: "#C28D73", text: "#503127", label: "#8A5A46" },
   "centro america":   { bg: "#E5E3CF", border: "#A8A070", text: "#44412A", label: "#7B7552" },
+  "america centrale": { bg: "#E5E3CF", border: "#A8A070", text: "#44412A", label: "#7B7552" },
   "sud america":      { bg: "#DDE4D7", border: "#8EA083", text: "#344032", label: "#66775E" },
   "europa":           { bg: "#E2E6EC", border: "#8F9AA8", text: "#3A4450", label: "#6D7886" },
   "africa":           { bg: "#EEE0BE", border: "#C6A15A", text: "#59451B", label: "#927339" },
   "asia":             { bg: "#E7D5D0", border: "#B98578", text: "#4E2F2A", label: "#876057" },
   "oceania":          { bg: "#DCE8E8", border: "#7FA1A0", text: "#2F4747", label: "#64807E" },
   "non specificato":  { bg: "#ECE8E1", border: "#B7ADA0", text: "#4E473F", label: "#81776B" },
+};
+
+const CONTINENTE_IMAGES = {
+  "nord america": "images/continents/nord-america.png",
+  "centro america": "images/continents/america-centrale.png",
+  "america centrale": "images/continents/america-centrale.png",
+  "sud america": "images/continents/sud-america.png",
+  "europa": "images/continents/europa.png",
+  "africa": "images/continents/africa.png",
+  "asia": "images/continents/asia.png",
+  "oceania": "images/continents/oceania.png",
 };
 
 /* Paesi — palette desaturata, ispirata alle bandiere ma resa raffinata */
@@ -231,6 +243,11 @@ function getContinentePalette(name) {
   return CONTINENTE_PALETTE[k] || CONTINENTE_PALETTE["non specificato"];
 }
 
+function getContinenteImage(name) {
+  var k = normalizeKey(name);
+  return CONTINENTE_IMAGES[k] || null;
+}
+
 function getPaesePalette(name) {
   var k = normalizeKey(name);
   return PAESE_PALETTE[k] || PAESE_FALLBACK;
@@ -394,6 +411,7 @@ function initMobileMenuDetail() {
     var tc = getContrastTextColorD(sc);
     var tipoPal = getTipologiaPalette(c.tipologia);
     var contPal = getContinentePalette(c.continente);
+    var contBg = getContinenteImage(c.continente);
     var paesePal = getPaesePalette(c.paese);
 
     var imagesHtml = imageBlock(c.immagine, 'Campione di sabbia: ' + c.nome, '📷 Immagine del campione');
@@ -418,17 +436,18 @@ function initMobileMenuDetail() {
     imagesHtml += microscopeImages.map(function(img) {
       return imageBlock(img.src, img.label + ': ' + c.nome, img.label);
     }).join('');
-    var hasMicroscope = microscopeImages.length > 0;
-    if (hasMicroscope) {
-      imagesHtml += '<div class="image-qr"><div class="image-qr-container" id="qr-microscope"></div><p class="qr-note">Scansiona per aprire la scheda</p></div>';
-    }
+    var qrImage = microscopeImages[0] || { src: c.immagine, label: '📷 Immagine del campione' };
+    var qrImageNote = microscopeImages.length > 0
+      ? 'Scansiona per aprire l&#39;immagine al microscopio'
+      : 'Scansiona per aprire l&#39;immagine del campione';
+    imagesHtml += '<div class="image-qr"><div class="image-qr-container" id="qr-image"></div><p class="qr-note">' + qrImageNote + '</p></div>';
 
     var tipologiaHtml = metaItem('Tipologia', c.tipologia, tipoPal, 'tipologia');
 
     detailPage.innerHTML =
       '<div class="detail-back"><a href="index.html" class="btn btn-back">← Torna alla collezione</a></div>' +
       '<div class="detail-header" style="position:relative;"><h1>' + c.nome + '</h1><p class="detail-header-location">📍 ' + c.provenienza + ' — ' + c.paese + ', ' + c.continente + '</p>' +
-        (c.id === 667 ? '<a href="easter-egg.html" class="easter-egg-btn" title="Hai trovato qualcosa di speciale..." aria-label="Easter egg" style="position:absolute;top:0;right:0;display:inline-flex;align-items:center;justify-content:center;width:52px;height:64px;background:linear-gradient(145deg,#fff8e7,#f0d9a8);border-radius:50%/60% 60% 55% 55%;box-shadow:0 4px 14px rgba(139,97,54,0.35),inset 0 -4px 8px rgba(139,97,54,0.15);text-decoration:none;font-size:1.8rem;transition:transform 0.25s ease,box-shadow 0.25s ease;animation:eggFloat 3s ease-in-out infinite;" onmouseover="this.style.transform=\'scale(1.15) rotate(-8deg)\';this.style.boxShadow=\'0 8px 22px rgba(139,97,54,0.5),inset 0 -4px 8px rgba(139,97,54,0.15)\';" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 14px rgba(139,97,54,0.35),inset 0 -4px 8px rgba(139,97,54,0.15)\';">🥚</a><style>@keyframes eggFloat{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-4px) rotate(3deg);}}</style>' : '') +
+        (c.id === 767 ? '<a href="easter-egg.html" class="easter-egg-btn" title="Hai trovato qualcosa di speciale..." aria-label="Easter egg" style="position:absolute;top:0;right:0;display:inline-flex;align-items:center;justify-content:center;width:52px;height:64px;background:linear-gradient(145deg,#fff8e7,#f0d9a8);border-radius:50%/60% 60% 55% 55%;box-shadow:0 4px 14px rgba(139,97,54,0.35),inset 0 -4px 8px rgba(139,97,54,0.15);text-decoration:none;font-size:1.8rem;transition:transform 0.25s ease,box-shadow 0.25s ease;animation:eggFloat 3s ease-in-out infinite;" onmouseover="this.style.transform=\'scale(1.15) rotate(-8deg)\';this.style.boxShadow=\'0 8px 22px rgba(139,97,54,0.5),inset 0 -4px 8px rgba(139,97,54,0.15)\';" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 14px rgba(139,97,54,0.35),inset 0 -4px 8px rgba(139,97,54,0.15)\';">🥚</a><style>@keyframes eggFloat{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-4px) rotate(3deg);}}</style>' : '') +
       '</div>' +
       '<div class="detail-content">' +
         '<div class="detail-images">' +
@@ -445,7 +464,7 @@ function initMobileMenuDetail() {
             metaItem('Regione', c.regione, FIELD_PALETTE.regione) +
             metaItem('Bacino / Mare', c.bacino, FIELD_PALETTE.bacino, 'bacino', basePath + 'images/bg-sea.jpg') +
             metaItem('Paese', c.paese, paesePal, 'paese', getPaeseFlagUrl(c.paese)) +
-            metaItem('Continente', c.continente, contPal, 'continente') +
+            metaItem('Continente', c.continente, contPal, 'continente', contBg ? basePath + contBg : null) +
             tipologiaHtml +
             metaItem('Anno di raccolta', c.anno, FIELD_PALETTE.anno, 'anno') +
           '</div></div>' +
@@ -466,7 +485,7 @@ function initMobileMenuDetail() {
       '</div></section>' : '');
 
     generateQR(c.id);
-    if (hasMicroscope) generateQR(c.id, 'qr-microscope', 140);
+    generateQR(c.id, 'qr-image', 140, new URL(basePath + qrImage.src, window.location.href).href);
 
     // Attach hover/focus listeners
     document.querySelectorAll('.sand-type-item').forEach(function(el) {
@@ -489,12 +508,13 @@ function initMobileMenuDetail() {
     });
   }
 
-  function generateQR(id, containerId, size) {
+  function generateQR(id, containerId, size, targetUrl) {
     var elId = containerId || 'qr-code';
     var qrSize = size || 180;
     var qrContainer = document.getElementById(elId);
     if (!qrContainer) return;
-    var pageUrl = window.location.href;
+    qrContainer.innerHTML = '';
+    var pageUrl = targetUrl || window.location.href;
 
     if (typeof QRCode !== 'undefined') {
       new QRCode(qrContainer, {
