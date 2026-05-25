@@ -1375,6 +1375,121 @@ h1 em, h2 em, h3 em {
 }
 
 /* ============================================
+   FAQ + CONTATTO PROF
+   ============================================ */
+.faq-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.faq-panel,
+.faq-contact {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+}
+
+.faq-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  margin-bottom: 0.75rem;
+}
+
+.faq-section h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.faq-intro,
+.faq-contact p {
+  color: var(--color-text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.faq-item {
+  padding: 1.15rem 1.25rem;
+  background: var(--color-bg-warm);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+}
+
+.faq-item h3,
+.faq-contact h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--color-text);
+  margin-bottom: 0.35rem;
+}
+
+.faq-item p {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.faq-contact {
+  position: sticky;
+  top: calc(var(--header-height) + 1.25rem);
+}
+
+.prof-email {
+  display: block;
+  margin: 1rem 0 1.25rem;
+  color: var(--color-earth-dark);
+  font-size: 0.92rem;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.prof-mail-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.8rem 1.15rem;
+  border-radius: 999px;
+  background: var(--color-terracotta);
+  color: var(--color-text-inverse);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(200, 109, 66, 0.22);
+}
+
+.prof-mail-btn:hover {
+  color: var(--color-text-inverse);
+  background: var(--color-terracotta-dark);
+  transform: translateY(-1px);
+}
+
+/* ============================================
    DETAIL PAGE
    ============================================ */
 .detail-page {
@@ -1905,6 +2020,18 @@ h1 em, h2 em, h3 em {
     padding: 0 1.25rem 3rem;
   }
 
+  .faq-section {
+    padding: 0 1.25rem 3rem;
+  }
+
+  .faq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-contact {
+    position: static;
+  }
+
   /* Map on tablet */
   .map-container {
     overflow: hidden;
@@ -2230,6 +2357,13 @@ h1 em, h2 em, h3 em {
   .curiosita-inner {
     padding: 1.5rem 1rem;
   }
+  .faq-section {
+    padding: 0 1rem 2.5rem;
+  }
+  .faq-panel,
+  .faq-contact {
+    padding: 1.35rem;
+  }
   .site-footer {
     padding: 2.5rem 1rem 2rem;
   }
@@ -2550,6 +2684,7 @@ h1 em, h2 em, h3 em {
 .results-bar,
 .gallery-section,
 .curiosita-section,
+.faq-section,
 .site-footer {
   position: relative;
   z-index: 5;
@@ -2904,6 +3039,44 @@ html[data-theme="dark"] .footer-credit-marquee span {
   text-shadow: 0 0 14px rgba(255, 178, 74, 0.22);
 }
 
+html[data-theme="dark"] .faq-panel,
+html[data-theme="dark"] .faq-contact,
+html[data-theme="dark"] .faq-item {
+  background: linear-gradient(135deg, #2B2118 0%, #1F160F 100%);
+  border-color: rgba(255, 178, 74, 0.22);
+  color: #F7E8D0;
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] .faq-section h2,
+html[data-theme="dark"] .faq-item h3,
+html[data-theme="dark"] .faq-contact h3 {
+  color: #FFF2DC;
+}
+
+html[data-theme="dark"] .faq-intro,
+html[data-theme="dark"] .faq-item p,
+html[data-theme="dark"] .faq-contact p {
+  color: #E7D2B3;
+}
+
+html[data-theme="dark"] .prof-email {
+  color: #FFD08A;
+}
+
+html[data-theme="dark"] .prof-mail-btn {
+  background: #FFB24A;
+  color: #20140B;
+  box-shadow: 0 12px 28px rgba(255, 178, 74, 0.22);
+}
+
+html[data-theme="dark"] .prof-mail-btn:hover {
+  background: #FFC46B;
+  color: #20140B;
+}
+
 html[data-theme="dark"] .curiosita-inner {
   background: linear-gradient(135deg, #2F2419 0%, #1F150E 100%);
   border-color: rgba(255, 178, 74, 0.34);
@@ -2975,6 +3148,7 @@ html.theme-anim .theme-toggle {
         <a href="#mappa">Mappa</a>
         <a href="#collezione">Collezione</a>
         <a href="#info">Info</a>
+        <a href="#faq">FAQ</a>
         <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia tema" title="Cambia tema">
           <span class="theme-toggle-icon" data-theme-icon="auto" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 9 4.7 1.7 1.7 0 0 0 10 3.2V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
@@ -3003,6 +3177,7 @@ html.theme-anim .theme-toggle {
     <a href="#mappa">Mappa</a>
     <a href="#collezione">Collezione</a>
     <a href="#info">Informazioni</a>
+    <a href="#faq">FAQ</a>
     <button type="button" class="theme-toggle theme-toggle-mobile" id="theme-toggle-mobile" aria-label="Cambia tema">
       <span class="theme-toggle-icon" data-theme-icon="auto" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 9 4.7 1.7 1.7 0 0 0 10 3.2V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
@@ -3197,6 +3372,42 @@ html.theme-anim .theme-toggle {
     </div>
   </section>
 
+  <!-- FAQ e contatto prof -->
+  <section class="faq-section" id="faq" aria-label="Domande frequenti e contatto">
+    <div class="faq-layout">
+      <div class="faq-panel">
+        <span class="faq-eyebrow">FAQ</span>
+        <h2>Domande frequenti</h2>
+        <p class="faq-intro">Risposte rapide per consultare il museo digitale, usare i QR code e capire come leggere le schede dei campioni.</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Come posso cercare un campione?</h3>
+            <p>Usa la barra di ricerca o i filtri per continente, paese e tipologia. Puoi anche ordinare i risultati per numero di campione.</p>
+          </div>
+          <div class="faq-item">
+            <h3>A cosa servono i QR code?</h3>
+            <p>Un QR apre la scheda tecnica del campione. L'altro apre direttamente l'immagine disponibile del campione o del microscopio.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Perche alcune immagini non sono disponibili?</h3>
+            <p>Alcuni campioni sono gia catalogati ma non hanno ancora una foto pubblicata. In quel caso il sito mostra un'immagine provvisoria.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Chi posso contattare per domande o consigli?</h3>
+            <p>Puoi scrivere direttamente alla professoressa Marchiori usando il collegamento email in questa sezione.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="faq-contact" aria-label="Scrivi alla professoressa">
+        <span class="faq-eyebrow">Contatto</span>
+        <h3>Chiedi alla prof</h3>
+        <p>Per domande sul sito, correzioni, suggerimenti o nuove idee per la collezione.</p>
+        <a class="prof-email" href="mailto:v_marchiori@itcslazzari.eu">v_marchiori@itcslazzari.eu</a>
+        <a class="prof-mail-btn" href="mailto:v_marchiori@itcslazzari.eu?subject=Domanda%20sul%20Museo%20Digitale%20delle%20Sabbie">Scrivi email</a>
+      </aside>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
@@ -3206,6 +3417,8 @@ html.theme-anim .theme-toggle {
         <a href="#mappa">Mappa</a>
         <a href="#collezione">Collezione</a>
         <a href="#info">Informazioni</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:v_marchiori@itcslazzari.eu?subject=Domanda%20sul%20Museo%20Digitale%20delle%20Sabbie">Scrivi alla prof</a>
       </div>
       <p class="footer-copy">&copy; 2026 ITCS "Maria Lazzari".</p>
       <div class="footer-credit-marquee" aria-label="BY ERJON GABRIELE BASHA">
