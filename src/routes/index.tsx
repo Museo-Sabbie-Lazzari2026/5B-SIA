@@ -7,8 +7,7 @@ export const Route = createFileRoute("/")({
       { title: "Museo Digitale delle Sabbie del Mondo" },
       {
         name: "description",
-        content:
-          "Esplora una collezione unica di oltre 800 campioni di sabbia da tutto il mondo.",
+        content: "Esplora una collezione unica di oltre 800 campioni di sabbia da tutto il mondo.",
       },
     ],
   }),
@@ -17,7 +16,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <iframe
-      src="/museo/index.html"
+      src="museo/index.html"
       title="Museo delle Sabbie"
       style={{
         position: "fixed",

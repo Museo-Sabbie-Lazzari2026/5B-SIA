@@ -1,12 +1,10 @@
 {
-  "name": "Sand Scape Explorer",
-  "short_name": "SandScape",
-  "description": "Explore stunning sand landscapes and desert vistas.",
-  "start_url": "/",
+  "name": "Museo Digitale delle Sabbie del Mondo",
+  "short_name": "Museo Sabbie",
+  "description": "Collezione digitale dei campioni di sabbia dell'ITCS Maria Lazzari.",
+  "start_url": "./museo/index.html",
   "display": "standalone",
-  "background_color": "#fdf6e3",
-  "theme_color": "#c8870a",
-  "icons": [
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
-  ]
+  "background_color": "#f7f1e8",
+  "theme_color": "#c86d42",
+  "icons": [{ "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }
