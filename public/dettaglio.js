@@ -184,6 +184,7 @@ const PAESE_ISO = {
   bulgaria: "bg",
   "costa rica": "cr",
   ecuador: "ec",
+  "el salvador": "sv",
   estonia: "ee",
   giordania: "jo",
   kenia: "ke",
