@@ -702,6 +702,10 @@ function initMobileMenuDetail() {
       el.addEventListener("focus", activate);
       el.addEventListener("blur", deactivate);
     });
+
+    if (window.MuseoLanguage && typeof window.MuseoLanguage.refresh === "function") {
+      window.MuseoLanguage.refresh(300);
+    }
   }
 
   function generateQR(id, containerId, size, targetUrl) {

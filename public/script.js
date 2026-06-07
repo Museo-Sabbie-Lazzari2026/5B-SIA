@@ -1063,6 +1063,12 @@ function initMobileMenu() {
   }
 
   /* --- Apply Filters --- */
+  function refreshLanguageAfterRender() {
+    if (window.MuseoLanguage && typeof window.MuseoLanguage.refresh === "function") {
+      window.MuseoLanguage.refresh(300);
+    }
+  }
+
   function applyFilters() {
     var searchTerm = searchInput.value.toLowerCase().trim();
 
@@ -1096,6 +1102,7 @@ function initMobileMenu() {
     visibleCount = PAGE_SIZE;
     renderFilterBadges();
     renderGallery();
+    refreshLanguageAfterRender();
   }
 
   function applySortOrder() {
@@ -1153,6 +1160,7 @@ function initMobileMenu() {
     visibleCount = PAGE_SIZE;
     renderFilterBadges();
     renderGallery();
+    refreshLanguageAfterRender();
   }
 
   /* --- Render Gallery --- */
@@ -1360,6 +1368,7 @@ function initMobileMenu() {
       btn.addEventListener("click", function () {
         visibleCount += PAGE_SIZE;
         renderGallery();
+        refreshLanguageAfterRender();
       });
       container.appendChild(btn);
     }
