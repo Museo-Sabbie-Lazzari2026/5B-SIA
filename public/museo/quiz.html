@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz delle Sabbie - Museo delle Sabbie</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <style>
+      :root {
+        --bg: #f7efe3;
+        --panel: #fffaf1;
+        --text: #24170f;
+        --muted: #766452;
+        --accent: #c87435;
+        --line: #e4d2ba;
+        --dark: #17100b;
+        --ok: #176b3a;
+        --bad: #9b2d21;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.55;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 250, 241, 0.9);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+      .header-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        min-height: 72px;
+        padding: 0 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 800;
+      }
+      .logo img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+        border-radius: 6px;
+      }
+      .nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        flex-wrap: wrap;
+      }
+      .nav a {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .nav a.active,
+      .nav a:hover {
+        color: var(--accent);
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 6rem;
+      }
+      .quiz-hero,
+      .quiz-question,
+      .quiz-result,
+      .auth-user-card {
+        background: rgba(255, 250, 241, 0.94);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 18px 48px rgba(72, 45, 23, 0.08);
+      }
+      .quiz-hero {
+        padding: 2rem;
+        margin-bottom: 1rem;
+      }
+      .eyebrow {
+        display: block;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+      }
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 500;
+        font-size: clamp(2.4rem, 6vw, 4.4rem);
+        line-height: 0.96;
+      }
+      .quiz-hero p {
+        color: var(--muted);
+        max-width: 65ch;
+      }
+      .quiz-form {
+        display: grid;
+        gap: 1rem;
+      }
+      .quiz-question {
+        padding: 1.2rem;
+        border: 0;
+        margin: 0;
+      }
+      .quiz-question legend {
+        display: block;
+        width: 100%;
+        font-weight: 800;
+        font-size: 1.05rem;
+        margin-bottom: 0.9rem;
+      }
+      .quiz-question legend span {
+        display: block;
+        color: var(--accent);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+      .quiz-option {
+        display: flex;
+        gap: 0.75rem;
+        align-items: flex-start;
+        padding: 0.85rem;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin: 0.55rem 0;
+        cursor: pointer;
+        background: #fffdf8;
+      }
+      .quiz-option:has(input:checked) {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(200, 116, 53, 0.18);
+      }
+      .quiz-option input {
+        margin-top: 0.25rem;
+      }
+      .quiz-note {
+        margin: 0.9rem 0 0;
+        padding: 0.85rem;
+        border-radius: 12px;
+        background: #fff4dc;
+        color: #6b4c2f;
+      }
+      .quiz-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+        margin: 1rem 0;
+      }
+      .btn,
+      .auth-logout-btn {
+        min-height: 46px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--dark);
+        color: #fff7e8;
+        font-weight: 900;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 1.15rem;
+        text-align: center;
+      }
+      .btn.secondary {
+        background: transparent;
+        color: var(--text);
+      }
+      .quiz-result {
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+      .quiz-result.success {
+        border-color: rgba(23, 107, 58, 0.35);
+        color: var(--ok);
+        background: #eef9f1;
+      }
+      .quiz-result.error {
+        border-color: rgba(155, 45, 33, 0.35);
+        color: var(--bad);
+        background: #fff1ed;
+      }
+      .quiz-result .btn {
+        margin-top: 0.8rem;
+        color: #fff7e8;
+      }
+      .auth-user-card {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.85rem;
+        margin-top: 1rem;
+        max-width: 520px;
+      }
+      .auth-user-card strong,
+      .auth-user-card span {
+        display: block;
+      }
+      .auth-user-card span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+      .auth-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--accent);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+      }
+      .auth-logout-btn {
+        min-height: 36px;
+        margin-left: auto;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+      }
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+      @media (max-width: 720px) {
+        .nav {
+          width: 100%;
+          margin-left: 0;
+          gap: 0.85rem;
+        }
+        main {
+          padding-top: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html"
+          ><img src="../images/logo-scuola.png" alt="Logo ITCS Maria Lazzari" /><span
+            >Museo delle Sabbie</span
+          ></a
+        >
+        <nav class="nav" aria-label="Navigazione principale">
+          <a href="index.html#collezione">Collezione</a>
+          <a class="active" href="gioco.html">Gioco</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contatto-prof.html">Contatto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="quiz-hero">
+        <span class="eyebrow">Quiz finale</span>
+        <h1>10 domande sulle sabbie</h1>
+        <p>Rispondi con attenzione. L'attestato si sblocca solo con 10 risposte corrette su 10.</p>
+        <div id="auth-user"></div>
+      </section>
+
+      <form class="quiz-form" id="quiz-form"></form>
+      <div class="quiz-actions">
+        <button class="btn" type="submit" form="quiz-form">Consegna quiz</button>
+        <a class="btn secondary" href="gioco.html">Torna al gioco</a>
+      </div>
+      <div id="quiz-result" class="quiz-result" aria-live="polite"></div>
+    </main>
+
+    <footer>
+      <p><strong>Museo Digitale delle Sabbie del Mondo</strong></p>
+      <p>ITCS "Maria Lazzari" - Progetto didattico</p>
+    </footer>
+
+    <script src="../auth-config.js"></script>
+    <script src="../auth.js"></script>
+    <script src="../quiz.js"></script>
+    <script src="../translate.js"></script>
+  </body>
+</html>

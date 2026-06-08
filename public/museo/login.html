@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accesso - Museo delle Sabbie</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <style>
+      :root {
+        --bg: #f7efe3;
+        --panel: #fffaf1;
+        --text: #24170f;
+        --muted: #7c6a58;
+        --accent: #c87435;
+        --line: #e4d2ba;
+        --dark: #17100b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at 25% 0%, #fff6e6 0, transparent 38%), var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.55;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 250, 241, 0.9);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+      .header-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        min-height: 72px;
+        padding: 0 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 800;
+      }
+      .logo img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+        border-radius: 6px;
+      }
+      .nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        flex-wrap: wrap;
+      }
+      .nav a {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .nav a.active,
+      .nav a:hover {
+        color: var(--accent);
+      }
+      main {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 6rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 380px;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      .hero,
+      .login-card,
+      .auth-user-card {
+        background: rgba(255, 250, 241, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: 0 18px 48px rgba(72, 45, 23, 0.1);
+      }
+      .hero {
+        padding: clamp(2rem, 5vw, 4rem);
+      }
+      .eyebrow {
+        display: block;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 500;
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        line-height: 0.95;
+      }
+      .hero p {
+        max-width: 58ch;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+      .login-card {
+        padding: 1.5rem;
+      }
+      .login-card h2 {
+        margin-top: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 500;
+        font-size: 1.7rem;
+      }
+      .provider-stack {
+        display: grid;
+        gap: 0.8rem;
+        margin: 1.2rem 0;
+      }
+      .login-provider-btn,
+      .btn,
+      .auth-logout-btn {
+        min-height: 46px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--dark);
+        color: #fff7e8;
+        font-weight: 800;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: center;
+      }
+      .login-provider-btn[disabled] {
+        opacity: 0.55;
+        cursor: not-allowed;
+        background: #6e6258;
+      }
+      #apple-login-button {
+        background: #050505;
+      }
+      .btn.secondary {
+        background: transparent;
+        color: var(--text);
+      }
+      .auth-message {
+        margin-top: 1rem;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        font-size: 0.92rem;
+        color: var(--muted);
+        background: #fff4dc;
+        border: 1px solid #ecd5ad;
+      }
+      .auth-message.error {
+        color: #7a1d1d;
+        background: #fff0ef;
+        border-color: #efb8b3;
+      }
+      .auth-user-card {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .auth-user-card strong,
+      .auth-user-card span {
+        display: block;
+      }
+      .auth-user-card span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+      .auth-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--accent);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+      }
+      .auth-logout-btn {
+        width: auto;
+        min-height: 36px;
+        margin-left: auto;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+      @media (max-width: 840px) {
+        main {
+          grid-template-columns: 1fr;
+          padding-top: 2rem;
+        }
+        .nav {
+          width: 100%;
+          margin-left: 0;
+          gap: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <img src="../images/logo-scuola.png" alt="Logo ITCS Maria Lazzari" />
+          <span>Museo delle Sabbie</span>
+        </a>
+        <nav class="nav" aria-label="Navigazione principale">
+          <a href="index.html#mappa">Mappa</a>
+          <a href="index.html#collezione">Collezione</a>
+          <a class="active" href="gioco.html">Gioco</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contatto-prof.html">Contatto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <span class="eyebrow">Accesso richiesto</span>
+        <h1>Entra per giocare al quiz delle sabbie.</h1>
+        <p>
+          Il quiz salva il risultato sul dispositivo e sblocca l'attestato solo se completi tutte le
+          10 domande correttamente.
+        </p>
+        <p>
+          Accesso Google e Apple richiedono le credenziali ufficiali del sito. I pulsanti sono
+          pronti, ma non usano login finti.
+        </p>
+      </section>
+
+      <aside class="login-card">
+        <div id="auth-user"></div>
+
+        <div id="already-logged" hidden>
+          <h2>Accesso effettuato</h2>
+          <p>Puoi iniziare il quiz oppure tornare alla pagina gioco.</p>
+          <a class="btn" data-auth-next href="quiz.html">Continua</a>
+          <a class="btn secondary" href="gioco.html">Pagina gioco</a>
+        </div>
+
+        <div id="login-choices">
+          <h2>Scegli un account</h2>
+          <div class="provider-stack">
+            <div id="google-login-button"></div>
+            <button type="button" class="login-provider-btn" id="apple-login-button">
+              Continua con Apple
+            </button>
+          </div>
+          <div class="auth-message" id="auth-message">Caricamento accesso...</div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <p><strong>Museo Digitale delle Sabbie del Mondo</strong></p>
+      <p>ITCS "Maria Lazzari" - Progetto didattico</p>
+    </footer>
+
+    <script src="../auth-config.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script
+      src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"
+      async
+      defer
+    ></script>
+    <script src="../auth.js"></script>
+    <script>
+      window.MuseoAuth.initLoginPage();
+    </script>
+    <script src="../translate.js"></script>
+  </body>
+</html>
