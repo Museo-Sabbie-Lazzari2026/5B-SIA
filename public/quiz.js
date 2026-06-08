@@ -114,52 +114,72 @@
   }
 
   function renderQuiz() {
-    if (!window.MuseoAuth || !window.MuseoAuth.requireAuth()) return;
     var form = document.getElementById("quiz-form");
     var result = document.getElementById("quiz-result");
     if (!form) return;
 
-    window.MuseoAuth.renderUserBox(document.getElementById("auth-user"));
-
-    form.innerHTML = QUESTIONS.map(function (question, qIndex) {
-      var answers = shuffleOptions(question, qIndex);
-      return (
-        '<fieldset class="quiz-question">' +
-        "<legend><span>Domanda " +
-        (qIndex + 1) +
-        "</span>" +
-        escapeHtml(question.question) +
-        "</legend>" +
-        answers
-          .map(function (answer, aIndex) {
-            var id = "q" + qIndex + "-a" + aIndex;
-            return (
-              '<label class="quiz-option" for="' +
-              id +
-              '">' +
-              '<input type="radio" id="' +
-              id +
-              '" name="q' +
-              qIndex +
-              '" value="' +
-              (answer.correct ? "1" : "0") +
-              '" required>' +
-              "<span>" +
-              escapeHtml(answer.text) +
-              "</span></label>"
-            );
-          })
-          .join("") +
-        '<p class="quiz-note" hidden>' +
-        escapeHtml(question.note) +
-        "</p></fieldset>"
-      );
-    }).join("");
+    form.innerHTML =
+      '<fieldset class="quiz-question participant-card">' +
+      "<legend><span>Studente</span>Nome e cognome per l'attestato</legend>" +
+      '<div class="participant-grid">' +
+      '<label for="student-name">Nome<input id="student-name" name="studentName" type="text" autocomplete="given-name" required></label>' +
+      '<label for="student-surname">Cognome<input id="student-surname" name="studentSurname" type="text" autocomplete="family-name" required></label>' +
+      "</div></fieldset>" +
+      QUESTIONS.map(function (question, qIndex) {
+        var answers = shuffleOptions(question, qIndex);
+        return (
+          '<fieldset class="quiz-question">' +
+          "<legend><span>Domanda " +
+          (qIndex + 1) +
+          "</span>" +
+          escapeHtml(question.question) +
+          "</legend>" +
+          answers
+            .map(function (answer, aIndex) {
+              var id = "q" + qIndex + "-a" + aIndex;
+              return (
+                '<label class="quiz-option" for="' +
+                id +
+                '">' +
+                '<input type="radio" id="' +
+                id +
+                '" name="q' +
+                qIndex +
+                '" value="' +
+                (answer.correct ? "1" : "0") +
+                '" required>' +
+                "<span>" +
+                escapeHtml(answer.text) +
+                "</span></label>"
+              );
+            })
+            .join("") +
+          '<p class="quiz-note" hidden>' +
+          escapeHtml(question.note) +
+          "</p></fieldset>"
+        );
+      }).join("");
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var score = 0;
       var missing = false;
+      var nameInput = form.querySelector('[name="studentName"]');
+      var surnameInput = form.querySelector('[name="studentSurname"]');
+      var participantName = [nameInput && nameInput.value, surnameInput && surnameInput.value]
+        .map(function (value) {
+          return String(value || "").trim();
+        })
+        .filter(Boolean)
+        .join(" ");
+
+      if (!nameInput.value.trim() || !surnameInput.value.trim()) {
+        result.className = "quiz-result error";
+        result.textContent = "Inserisci nome e cognome prima di consegnare.";
+        if (!nameInput.value.trim()) nameInput.focus();
+        else surnameInput.focus();
+        return;
+      }
 
       QUESTIONS.forEach(function (_, index) {
         var selected = form.querySelector('input[name="q' + index + '"]:checked');
@@ -178,20 +198,19 @@
       });
 
       if (score === QUESTIONS.length) {
-        var session = window.MuseoAuth.readSession();
         localStorage.setItem(
           PASS_KEY,
           JSON.stringify({
             score: score,
             total: QUESTIONS.length,
             completedAt: new Date().toISOString(),
-            user: session,
+            participantName: participantName,
           }),
         );
         result.className = "quiz-result success";
         result.innerHTML =
           "<strong>Perfetto: 10 su 10.</strong> Puoi scaricare l'attestato." +
-          '<a class="btn" href="attestato.html">Vai all attestato</a>';
+          '<a class="btn" href="attestato.html">Vai all\'attestato</a>';
         setTimeout(function () {
           window.location.href = "attestato.html";
         }, 900);

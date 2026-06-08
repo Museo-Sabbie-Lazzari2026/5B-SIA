@@ -93,7 +93,6 @@
       }
       .hero-main,
       .rules-card,
-      .auth-user-card,
       .step-card {
         background: rgba(255, 250, 241, 0.94);
         border: 1px solid var(--line);
@@ -143,8 +142,7 @@
         gap: 0.8rem;
         margin-top: 1.5rem;
       }
-      .btn,
-      .auth-logout-btn {
+      .btn {
         min-height: 46px;
         border: 1px solid var(--line);
         border-radius: 999px;
@@ -195,38 +193,6 @@
         font-weight: 900;
         margin-bottom: 0.75rem;
       }
-      .auth-user-card {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 0.85rem;
-        margin-bottom: 1rem;
-      }
-      .auth-user-card strong,
-      .auth-user-card span {
-        display: block;
-      }
-      .auth-user-card span {
-        color: var(--muted);
-        font-size: 0.86rem;
-      }
-      .auth-avatar {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        object-fit: cover;
-        background: var(--accent);
-        color: #fff;
-        display: grid;
-        place-items: center;
-        font-weight: 900;
-      }
-      .auth-logout-btn {
-        min-height: 36px;
-        margin-left: auto;
-        padding: 0.45rem 0.85rem;
-        font-size: 0.8rem;
-      }
       footer {
         text-align: center;
         padding: 2rem 1rem;
@@ -272,16 +238,15 @@
           Dieci domande per mettere alla prova quello che sai su origine, colore, ambiente e
           osservazione al microscopio delle sabbie.
         </p>
-        <div id="auth-user"></div>
         <div class="cta-row">
-          <a class="btn" id="start-quiz-link" href="login.html?next=quiz.html">Accedi e inizia</a>
+          <a class="btn" id="start-quiz-link" href="quiz.html">Inizia il quiz</a>
           <a class="btn secondary" href="index.html#collezione">Ripassa la collezione</a>
         </div>
       </section>
       <aside class="rules-card">
         <h2>Regole</h2>
         <ol>
-          <li>Serve accesso con account Google o Apple configurato.</li>
+          <li>Inserisci nome e cognome prima di iniziare.</li>
           <li>Il quiz ha 10 domande a risposta multipla.</li>
           <li>Per ottenere l'attestato devi rispondere correttamente a tutte.</li>
           <li>Se sbagli, puoi riprovare dopo aver letto le spiegazioni.</li>
@@ -312,15 +277,6 @@
       <p>ITCS "Maria Lazzari" - Progetto didattico</p>
     </footer>
 
-    <script src="../auth-config.js"></script>
-    <script src="../auth.js"></script>
-    <script>
-      (function () {
-        var session = window.MuseoAuth.readSession();
-        window.MuseoAuth.renderUserBox(document.getElementById("auth-user"));
-        if (session) document.getElementById("start-quiz-link").setAttribute("href", "quiz.html");
-      })();
-    </script>
     <script src="../translate.js"></script>
   </body>
 </html>

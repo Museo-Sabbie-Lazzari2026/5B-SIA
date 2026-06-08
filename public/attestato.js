@@ -27,10 +27,15 @@
     }
   }
 
-  function renderCertificate() {
-    if (!window.MuseoAuth || !window.MuseoAuth.requireAuth()) return;
-    window.MuseoAuth.renderUserBox(document.getElementById("auth-user"));
+  function sanitizeFilename(value) {
+    return String(value || "studente")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/gi, "-")
+      .replace(/^-+|-+$/g, "");
+  }
 
+  function renderCertificate() {
     var data = null;
     try {
       data = JSON.parse(localStorage.getItem(PASS_KEY) || "null");
@@ -41,7 +46,7 @@
       return;
     }
 
-    var name = (data.user && data.user.name) || "Studente";
+    var name = data.participantName || "Studente";
     var date = formatDate(data.completedAt);
     var code =
       "SABBIE-" +
@@ -50,6 +55,7 @@
       Math.random().toString(36).slice(2, 7).toUpperCase();
 
     document.getElementById("certificate-name").textContent = name;
+    document.getElementById("certificate-bottom-name").textContent = name;
     document.getElementById("certificate-date").textContent = date;
     document.getElementById("certificate-code").textContent = code;
 
@@ -78,8 +84,7 @@
         var url = URL.createObjectURL(blob);
         var link = document.createElement("a");
         link.href = url;
-        link.download =
-          "attestato-museo-sabbie-" + escapeHtml(name).replace(/\s+/g, "-").toLowerCase() + ".html";
+        link.download = "attestato-museo-sabbie-" + sanitizeFilename(name) + ".html";
         link.click();
         URL.revokeObjectURL(url);
       });

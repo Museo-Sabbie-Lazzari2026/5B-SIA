@@ -91,8 +91,7 @@
       }
       .quiz-hero,
       .quiz-question,
-      .quiz-result,
-      .auth-user-card {
+      .quiz-result {
         background: rgba(255, 250, 241, 0.94);
         border: 1px solid var(--line);
         border-radius: 18px;
@@ -164,6 +163,38 @@
       .quiz-option input {
         margin-top: 0.25rem;
       }
+      .participant-card {
+        background: #fffaf1;
+      }
+      .participant-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+      .participant-grid label {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .participant-grid input {
+        width: 100%;
+        min-height: 46px;
+        margin-top: 0.35rem;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fffdf8;
+        color: var(--text);
+        font: inherit;
+        font-weight: 700;
+        padding: 0.75rem 0.85rem;
+      }
+      .participant-grid input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(200, 116, 53, 0.18);
+      }
       .quiz-note {
         margin: 0.9rem 0 0;
         padding: 0.85rem;
@@ -178,8 +209,7 @@
         justify-content: center;
         margin: 1rem 0;
       }
-      .btn,
-      .auth-logout-btn {
+      .btn {
         min-height: 46px;
         border: 1px solid var(--line);
         border-radius: 999px;
@@ -215,39 +245,6 @@
         margin-top: 0.8rem;
         color: #fff7e8;
       }
-      .auth-user-card {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 0.85rem;
-        margin-top: 1rem;
-        max-width: 520px;
-      }
-      .auth-user-card strong,
-      .auth-user-card span {
-        display: block;
-      }
-      .auth-user-card span {
-        color: var(--muted);
-        font-size: 0.86rem;
-      }
-      .auth-avatar {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        object-fit: cover;
-        background: var(--accent);
-        color: #fff;
-        display: grid;
-        place-items: center;
-        font-weight: 900;
-      }
-      .auth-logout-btn {
-        min-height: 36px;
-        margin-left: auto;
-        padding: 0.45rem 0.85rem;
-        font-size: 0.8rem;
-      }
       footer {
         text-align: center;
         padding: 2rem 1rem;
@@ -262,6 +259,9 @@
         }
         main {
           padding-top: 2rem;
+        }
+        .participant-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -287,8 +287,10 @@
       <section class="quiz-hero">
         <span class="eyebrow">Quiz finale</span>
         <h1>10 domande sulle sabbie</h1>
-        <p>Rispondi con attenzione. L'attestato si sblocca solo con 10 risposte corrette su 10.</p>
-        <div id="auth-user"></div>
+        <p>
+          Inserisci nome e cognome, poi rispondi con attenzione. L'attestato si sblocca solo con
+          10 risposte corrette su 10.
+        </p>
       </section>
 
       <form class="quiz-form" id="quiz-form"></form>
@@ -304,8 +306,6 @@
       <p>ITCS "Maria Lazzari" - Progetto didattico</p>
     </footer>
 
-    <script src="../auth-config.js"></script>
-    <script src="../auth.js"></script>
     <script src="../quiz.js"></script>
     <script src="../translate.js"></script>
   </body>
