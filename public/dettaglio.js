@@ -726,18 +726,10 @@ function initMobileMenuDetail() {
         correctLevel: QRCode.CorrectLevel.M,
       });
     } else {
-      var img = document.createElement("img");
-      img.src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=" +
-        qrSize +
-        "x" +
-        qrSize +
-        "&data=" +
-        encodeURIComponent(pageUrl);
-      img.alt = "QR Code per questo campione";
-      img.width = qrSize;
-      img.height = qrSize;
-      qrContainer.appendChild(img);
+      var unavailable = document.createElement("p");
+      unavailable.className = "qr-note";
+      unavailable.textContent = "QR non disponibile. Ricarica la pagina per riprovare.";
+      qrContainer.appendChild(unavailable);
     }
   }
 

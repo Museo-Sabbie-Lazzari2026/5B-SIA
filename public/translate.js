@@ -181,6 +181,7 @@
     script.src =
       "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
+    script.referrerPolicy = "no-referrer";
     document.head.appendChild(script);
   }
 

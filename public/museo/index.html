@@ -2,6 +2,8 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Museo Digitale delle Sabbie del Mondo</title>
   <meta name="description" content="Esplora una collezione unica di oltre 800 campioni di sabbia da tutto il mondo. Scopri le sabbie marine, desertiche, vulcaniche e fluviali attraverso immagini e analisi al microscopio.">
@@ -9,7 +11,7 @@
   <meta property="og:title" content="Museo Digitale delle Sabbie del Mondo">
   <meta property="og:description" content="Collezione digitale di sabbie provenienti da tutto il mondo con immagini al microscopio.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 /* ============================================
    MUSEO DIGITALE DELLE SABBIE DEL MONDO
@@ -3396,8 +3398,8 @@ html.theme-anim .theme-toggle {
     </div>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../mappa.js"></script>
   <script src="../translate.js"></script>
   <script src="../script.js"></script>

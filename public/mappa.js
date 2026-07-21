@@ -583,7 +583,10 @@
       });
     }
 
-    fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
+    fetch("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json", {
+      integrity: "sha384-Aw4s9pX1PTPntIYkZ/qV9IYiF5Gv8eTl6Dd/TT56zfO1Wwd+owFwYUuuXNUMrWkc",
+      referrerPolicy: "no-referrer",
+    })
       .then(function (r) {
         return r.json();
       })
